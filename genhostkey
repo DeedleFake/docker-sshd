@@ -1,0 +1,13 @@
+#!/bin/sh
+
+keyfile="/etc/ssh/ssh_host_rsa_key"
+if [ -n "$1" ]; then
+	keyfile="$1"
+fi
+
+if [ -f "$keyfile" ]; then
+	echo "$keyfile already exists. Doing nothing."
+	exit 1
+fi
+
+exec ssh-keygen -b 4096 -f "$keyfile"
